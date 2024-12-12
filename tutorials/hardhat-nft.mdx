@@ -204,7 +204,7 @@ You can now verify on the explorer you contract have been deployed (for [our exa
 
 ## Step 10: Mint an NFT
 Now we are creating a mint.js file in this folder with the following code:
-Make sure that your .env file contains the variables and the NFT Contract you created is set as CONTRACT_ADDRESS.
+Make sure that your .env file contains the variables and the NFT Contract you created is set as CONTRACT_ADDRESS and the recipiet is set as RECIPIENT_ADDRESS.
 
 Note: The script has the recipient in the code and needs to be replaced.
 An improvement would obviously be to take that as input.
@@ -217,6 +217,7 @@ const { ethers } = require("ethers");
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const RPC_URL = process.env.RPC_URL;
 const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
+const RECIPIENT_ADDRESS = process.env.RECIPIENT_ADDRESS;
 
 if (!PRIVATE_KEY || !RPC_URL || !CONTRACT_ADDRESS) {
   throw new Error("Please set PRIVATE_KEY, RPC_URL, and CONTRACT_ADDRESS in the .env file");
@@ -237,7 +238,7 @@ async function main() {
   const myNFT = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
 
   // Specify recipient address
-  const recipientAddress = "0xE78FD95780d54E63cC4c1D0Df7DbC4487a6C72D4"; // Replace with the recipient's address
+  const recipientAddress = RECIPIENT_ADDRESS; // Replace with the recipient's address
 
   console.log("Minting NFT...");
 
